@@ -1,0 +1,18 @@
+{
+  "imac": {
+    "right": {
+      "name": "macbook",
+      "right": 4799,
+      "top": 0,
+      "bottom": 1079
+    }
+  },
+  "macbook": {
+    "left": {
+      "name": "imac",
+      "left": 0,
+      "top": 0,
+      "bottom": 1049
+    }
+  }
+}

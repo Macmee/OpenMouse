@@ -1,0 +1,17 @@
+{
+  "name": "mouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Zorychta",
+  "license": "GNU",
+  "dependencies": {
+    "import-export": "^1.0.1",
+    "minimist": "^1.2.0",
+    "punt": "^2.3.0",
+    "robotjs": "^0.4.7"
+  }
+}
