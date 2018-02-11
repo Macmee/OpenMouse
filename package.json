@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "postinstall": "electron-rebuild"
   },
   "author": "David Zorychta",
   "license": "GNU",
   "dependencies": {
+    "electron": "^1.8.2",
+    "electron-rebuild": "^1.7.3",
     "import-export": "^1.0.1",
+    "keycode": "^2.1.9",
     "minimist": "^1.2.0",
     "punt": "^2.3.0",
     "robotjs": "^0.4.7"

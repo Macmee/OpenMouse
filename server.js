@@ -3,6 +3,8 @@ import Messages from './messages';
 import settings from './settings';
 import log from './log';
 
+import eventCapture from './event-capture';
+
 /* read the screen configuration file */
 
 const screenConfig = require(settings.screenConfig);
@@ -180,6 +182,7 @@ function setupOffScreen(location) {
     deltaX = 0;
   }
   robot.moveMouse(500, 500);
+  eventCapture.start();
 }
 
 /**
@@ -195,6 +198,40 @@ function setupOnScreen(location) {
     x = right.right - 1;
   }
   robot.moveMouse(x, y);
+  eventCapture.stop();
+  otherScreenId = null;
 }
 
+/**
+ * Forward mouse, key and scroll events to the active client
+ **/
 
+eventCapture.on('mousedown', () => {
+  if (otherScreenId) {
+    server.send(otherScreenId, 'md');
+  }
+});
+
+eventCapture.on('mouseup', () => {
+  if (otherScreenId) {
+    server.send(otherScreenId, 'mu');
+  }
+});
+
+eventCapture.on('keydown', (code) => {
+  if (otherScreenId) {
+    server.send(otherScreenId, 'kd', { c: code });
+  }
+});
+
+eventCapture.on('keydown', (code) => {
+  if (otherScreenId) {
+    server.send(otherScreenId, 'ku', { c: code });
+  }
+});
+
+eventCapture.on('scroll', (data) => {
+  if (otherScreenId) {
+    server.send(otherScreenId, 'wh', { y: data.deltaY });
+  }
+});

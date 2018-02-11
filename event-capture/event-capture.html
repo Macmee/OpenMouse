@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <style>
+    document, body, html {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <body>
+    <script>
+      const main = require('electron').remote.require('./event-capture/index');
+      document.addEventListener('mousemove', (event) => main.trigger('mousemove'));
+      document.addEventListener('mousedown', (event) => main.trigger('mousedown'));
+      document.addEventListener('mouseup', (event) => main.trigger('mouseup'));
+      document.addEventListener('keydown', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        main.trigger('keydown', event.keyCode);
+      });
+      document.addEventListener('keyup', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        main.trigger('keyup', event.keyCode);
+      });
+      document.addEventListener('wheel', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        main.trigger('scroll', { deltaY: event.deltaY });
+      });
+    </script>
+  </body>
+</html>

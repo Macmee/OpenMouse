@@ -40,7 +40,7 @@ class Messages extends Observable {
     return peer;
   }
 
-  send(client_id, type, message) {
+  send(client_id, type, message = {}) {
     const connection = this.peers[client_id];
     if (!connection) {
       return;
