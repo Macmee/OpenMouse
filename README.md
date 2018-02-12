@@ -1,4 +1,4 @@
-![OpenMouse](open-mouse-header-graphic.png)
+![OpenMouse](https://github.com/Macmee/OpenMouse/blob/master/open-mouse-header-grapic.png?raw=true)
 
 OpenMouse is a free and open source alternative to payware such as Synergy or ShareMouse.
 
