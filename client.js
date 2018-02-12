@@ -1,10 +1,16 @@
 import robot from 'robotjs';
 import keycode from 'keycode';
+import electron from 'electron';
 import Messages from './messages';
 import settings from './settings';
 import log from './log';
 
-import electron from 'electron';
+const possibleModifiers = {
+  18: 'alt',
+  91: 'command',
+  17: 'control',
+  16: 'shift',
+};
 
 if (!settings.ip) {
   log('IP_MISSING', 'Please provide an IP address to connect to with the --ip flag', true);
@@ -32,7 +38,8 @@ client.on('mu', data => {
 });
 
 client.on('kd', data => {
-  robot.keyToggle(keycode(data.c), 'down');
+  const modifiers = data.m && data.m.map(key => possibleModifiers[key]);
+  robot.keyToggle(keycode(data.c), 'down', modifiers || []);
 });
 
 client.on('ku', data => {

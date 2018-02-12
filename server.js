@@ -206,6 +206,15 @@ function setupOnScreen(location) {
  * Forward mouse, key and scroll events to the active client
  **/
 
+const possibleModifiers = {
+  18: 'alt',
+  91: 'command',
+  17: 'control',
+  16: 'shift',
+};
+
+const modifiers = {};
+
 eventCapture.on('mousedown', () => {
   if (otherScreenId) {
     server.send(otherScreenId, 'md');
@@ -219,12 +228,23 @@ eventCapture.on('mouseup', () => {
 });
 
 eventCapture.on('keydown', (code) => {
+  if (possibleModifiers[code]) {
+    modifiers[code] = 1;
+    return;
+  }
   if (otherScreenId) {
-    server.send(otherScreenId, 'kd', { c: code });
+    server.send(otherScreenId, 'kd', {
+      c: code,
+      m: Object.keys(modifiers),
+    });
   }
 });
 
-eventCapture.on('keydown', (code) => {
+eventCapture.on('keyup', (code) => {
+  if (possibleModifiers[code]) {
+    delete modifiers[code];
+    return;
+  }
   if (otherScreenId) {
     server.send(otherScreenId, 'ku', { c: code });
   }
