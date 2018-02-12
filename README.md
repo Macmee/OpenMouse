@@ -1,3 +1,5 @@
+![OpenMouse](open-mouse-header-graphic.png)
+
 OpenMouse is a free and open source alternative to payware such as Synergy or ShareMouse.
 
 It is currently under development.
