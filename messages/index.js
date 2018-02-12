@@ -1,7 +1,7 @@
 import punt from 'punt';
-import Observable from './observable';
+import Observable from '../observable';
 import interfaces from './interfaces';
-import log from './log';
+import log from '../log';
 
 /**
  * This is my attempt at building a light weight messaging protocol on top of UDP.
@@ -22,10 +22,10 @@ class Messages extends Observable {
   /**
    * Create a Messages communication channel. You may bind it to a port and interface
    * @param {Number} port - the port to bind to
-   * @param {String|null} interface - (optional) the interface ipv4 address to bind to, default is 0.0.0.0
+   * @param {String|null} bind_interface - (optional) the interface ipv4 address to bind to, default is 0.0.0.0
    **/
 
-  constructor(port, interface = '0.0.0.0') {
+  constructor(port, bind_interface = '0.0.0.0') {
     super();
 
     this.port = port;           // port to bind to
@@ -35,7 +35,7 @@ class Messages extends Observable {
 
     // bind on the UDP port and trigger events on all incoming messages
     log('LISTENING', `bound to port ${port}`);
-    this.server = punt.bind(`${interface}:${port}`);
+    this.server = punt.bind(`${bind_interface}:${port}`);
     this.server.on('message', (message) => {
       this.trigger(message.type, message);
     });
