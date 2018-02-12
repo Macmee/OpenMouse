@@ -23,8 +23,9 @@ Feel free to request more features by filing an issue, or by forking and submitt
 - [ ] Graphical interface for connecting
 - [ ] Graphical interface for managing screens/machines
 - [ ] Audio relay
-- [x] Multiplayform support (MacOS/Linux/Windows)
+- [x] Multiplatform support (MacOS/Linux/Windows)
 - [ ] Auto reconnect
+- [ ] Unit tested
 
 ## Building
 To build it at the moment you require nodejs and nvm (I am running 6.3.1 and 5.5.1). Clone this repo and run `npm install`.
