@@ -10,7 +10,7 @@
   "author": "David Zorychta",
   "license": "GNU",
   "dependencies": {
-    "electron": "^1.8.2",
+    "electron": "^1.8.3",
     "electron-rebuild": "^1.7.3",
     "import-export": "^1.0.1",
     "keycode": "^2.1.9",
